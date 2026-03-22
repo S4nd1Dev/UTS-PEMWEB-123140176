@@ -1,69 +1,86 @@
+:root {
+  --primary: #4f46e5;
+  --bg: #f9fafb;
+  --text: #111827;
+  --card: #ffffff;
+  --border: #e5e7eb;
+}
+
+body.dark-mode {
+  --bg: #111827;
+  --text: #f9fafb;
+  --card: #1f2937;
+  --border: #374151;
+}
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 20px;
+}
+
 /* HERO */
 .hero {
   text-align: center;
-  padding: 3rem 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 30px;
 }
 
 .hero h1 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  color: var(--primary-color);
+  color: var(--primary);
+  margin-bottom: 10px;
 }
 
-.hero p {
-  color: var(--secondary-color);
-  font-size: 1.1rem;
+/* CARD */
+.search-form,
+.filter,
+section {
+  background: var(--card);
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
 }
 
-/* EMPTY STATE */
+/* BUTTON */
+button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.85;
+}
+
+/* INPUT */
+input,
+select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  margin-top: 5px;
+}
+
+/* TEXT */
 .empty {
   text-align: center;
-  padding: 2rem;
-  color: var(--secondary-color);
-  font-style: italic;
+  color: gray;
 }
 
-/* CARD EFFECT UPGRADE */
-.search-form,
-.filter-controls,
-.data-table,
-.detail-card {
-  border-radius: 12px;
+.error {
+  color: red;
 }
 
-/* HOVER LIFT EFFECT 🔥 */
-.search-form:hover,
-.filter-controls:hover,
-.data-table:hover {
-  transform: translateY(-2px);
-  transition: 0.2s;
-}
-
-/* SMOOTH BUTTON */
-button {
-  transition: all 0.2s ease-in-out;
-}
-
-button:active {
-  transform: scale(0.97);
-}
-
-/* SCROLLBAR MODERN */
-::-webkit-scrollbar {
-  height: 8px;
-}
-::-webkit-scrollbar-thumb {
-  background: var(--primary-color);
-  border-radius: 10px;
-}
-
-/* TABLE IMPROVEMENT */
-.data-table tr {
-  transition: 0.2s;
-}
-
-/* GLASS EFFECT (optional keren banget) */
-.app-header {
-  backdrop-filter: blur(10px);
+.info {
+  text-align: center;
 }
