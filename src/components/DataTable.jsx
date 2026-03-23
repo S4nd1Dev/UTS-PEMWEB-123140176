@@ -27,59 +27,40 @@ function DataTable({
   }
 
   return (
-    <div className="data-table-container">
-      <table className="data-table">
-        <thead>
-          <tr>
-            <th>Cover</th>
-            <th>Title</th>
-            <th>Author(s)</th>
-            <th>First Published</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {books.map((book) => {
-            const coverUrl = book.cover_i
-              ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
-              : COVER_PLACEHOLDER;
-            
-            return (
-              <tr key={book.key}>
-                <td>
-                  <img src={coverUrl} alt={book.title} className="book-cover" />
-                </td>
-                <td>{book.title}</td>
-                <td>{book.author_name?.join(', ') || 'Unknown'}</td>
-                <td>{book.first_publish_year || 'N/A'}</td>
-                <td>
-                  {isReadingList ? (
-                    <button 
-                      className="action-btn btn-remove"
-                      onClick={() => onRemove(book.key)}
-                    >
-                      Remove
-                    </button>
-                  ) : (
-                    <button 
-                      className="action-btn btn-add"
-                      onClick={() => onAdd(book)}
-                    >
-                      Add to List
-                    </button>
-                  )}
-                  <button 
-                    className="action-btn btn-detail"
-                    onClick={() => onShowDetail(book.key)}
-                  >
-                    Details
+    <div className="books-grid">
+      {books.map((book) => {
+        const coverUrl = book.cover_i
+          ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg`
+          : COVER_PLACEHOLDER;
+
+        return (
+          <article key={book.key} className="book-card">
+            <img src={coverUrl} alt={book.title} className="book-cover" />
+
+            <div className="book-info">
+              <h3>{book.title}</h3>
+              <p className="book-meta">{book.author_name?.join(', ') || 'Unknown Author'}</p>
+              <p className="book-meta">Published: {book.first_publish_year || 'N/A'}</p>
+
+              <div className="card-actions">
+                {isReadingList ? (
+                  <button className="action-btn btn-remove" onClick={() => onRemove(book.key)}>
+                    Remove
                   </button>
-                </td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+                ) : (
+                  <button className="action-btn btn-add" onClick={() => onAdd(book)}>
+                    Add
+                  </button>
+                )}
+
+                <button className="action-btn btn-detail" onClick={() => onShowDetail(book.key)}>
+                  Detail
+                </button>
+              </div>
+            </div>
+          </article>
+        );
+      })}
     </div>
   );
 }
